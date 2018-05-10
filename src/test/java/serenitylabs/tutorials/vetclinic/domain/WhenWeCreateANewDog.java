@@ -34,7 +34,25 @@ public class WhenWeCreateANewDog {
                       .andOfColour("Black", "White");
 
         assertThat(fido.getColour(), contains("Black", "White"));
+        assertThat(fido.getColour(), hasItem("Black"));
+        assertThat(fido.getColour(), hasItems("Black", "White"));
         assertThat(fido.getColour(), not(hasItem("Red")));
 
+    }
+
+    @Test
+    public void a_dog_complains_by_growling(){
+        Dog fido = Dog.called("Fido").ofBreed("Labrador")
+                .andOfColour("Black", "White");
+
+        assertThat(fido.complaint(), is(equalTo("Grrrr")));
+    }
+
+    @Test
+    public void a_cat_complains_by_meowing(){
+        Cat felix  = Cat.called("Felix").ofBreed("Burmese")
+                        .andOfColour("Brown");
+
+        assertThat(felix.complaint(), is(equalTo("Meow")));
     }
 }
